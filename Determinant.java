@@ -45,27 +45,29 @@ public class Determinant {
 	
 	
 	/* Processes an NxN adjacency matrix A, created from an undirected graph, to produce its
-	 * Laplacian matrix. Returns the difference of the adjacency matrix subtracted from the resulting
-	 * Laplacian matrix, which is used for calculating the number of spanning trees.
+	 * Laplacian matrix. This is done by calculating the graph's degree matrix and subtracting the
+	 * input adjacency matrix. 
 	 * @author Colin Scruggs
-	 * @param NxN 2d array that is at least size 1x1
-	 * @return Luplacian matrix minus A
+	 * @param NxN 2d array (adjacency matrix) that is at least size 1x1
+	 * @return Laplacian matrix minus A
 	 */
 	public static long[][] createLaplacian(long[][] A) {
 		long length = A.length; // stores length of NxN matrix for traversal
 		
+		// nested for loop to traverse through entire matrix
 		for(int i = 0; i < length; i++) {
-			int count = 0; // counts number of adjacent connections per node
+			// counts number of adjacent connections per node to produce each node's degree
+			int count = 0; 
 			for(int j = 0; j < length; j++) {
 				if(A[i][j] == 1) {
 					count++; 
-					A[i][j] = -1; 
+					A[i][j] = -1; // 'subtract' each value in the adjacency matrix
 				}
 			}
-			A[i][i] = count;
+			A[i][i] = count; // set the diagonal of each similar row/column pair to its degree
 		}
-		
-		return A;
+		// return the modified array A, which is now equal to its Laplacian matrix
+		return A; 
 		
 	}
 	
