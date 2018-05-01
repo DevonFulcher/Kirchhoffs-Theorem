@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Driver {
 	public static void main(String args[]) {
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in); // scanner for reading in user input
 
 		// boolean control variables
@@ -19,7 +18,7 @@ public class Driver {
 			if(spanningTrees) // option 1
 				System.out.println("How many vertices are in the graph?");
 			else // option 2 (determinant)
-				System.out.println("What is the degree of the NxN matrix?");
+				System.out.println("What is the size of the NxN matrix?");
 			int size = scan.nextInt();
 			
 			// Prompt user to input entries in [size][size] matrix
@@ -43,6 +42,7 @@ public class Driver {
 			if(scan.next().equals("n"))
 				repeat = false;
 		}
+        scan.close();
 	}
 
 	public static long[][] inputMatrix(Scanner scan, int size) {
